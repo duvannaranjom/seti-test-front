@@ -1,0 +1,7 @@
+{
+  "name": "seti-front",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
