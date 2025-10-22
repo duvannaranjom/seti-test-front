@@ -110,7 +110,7 @@ ionic cordova build android
 ```
 APK generado en:
 ```
-platforms/android/app/build/outputs/apk/debug/app-debug.apk
+screenshots/test-seti.apk
 ```
 ![APK](./screenshots/test-seti.apk)
 
