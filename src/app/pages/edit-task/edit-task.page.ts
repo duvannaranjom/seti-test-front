@@ -98,4 +98,18 @@ export class EditTaskPage implements OnInit {
     });
     await alert.present();
   }
+
+  async toggleAndSave(ev: CustomEvent) {
+    this.isDone = !!ev.detail.checked;
+    const updated: Task = {
+      ...this.task!,
+      title: this.title.trim(),
+      description: this.description?.trim(),
+      status: this.isDone ? 'done' : 'pending',
+      updatedAt: Date.now(),
+    };
+    await this.tasksSvc.update(updated);
+    this.task = updated;
+    (await this.toast.create({ message: 'Estado actualizado', duration: 1200 })).present();
+  }
 }

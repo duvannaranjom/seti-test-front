@@ -28,10 +28,9 @@
     </ion-select>
   </ion-item>
 
-  <ion-item lines="none">
-    <ion-label>Estado</ion-label>
-    <ion-toggle [(ngModel)]="isDone" (ionChange)="toggleStatus($event)" color="success"></ion-toggle>
-    <ion-note slot="end">{{ isDone ? 'Completada' : 'Pendiente' }}</ion-note>
+  <ion-item [button]="false" detail="false"> <!-- evita click del item -->
+    <ion-label>Completada</ion-label>
+    <ion-toggle [checked]="isDone" (ionChange)="toggleAndSave($event)"></ion-toggle>
   </ion-item>
 
   <ion-button expand="block" color="primary" (click)="save()" class="ion-margin-top">

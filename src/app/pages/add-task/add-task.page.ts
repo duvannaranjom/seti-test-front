@@ -51,6 +51,7 @@ export class AddTaskPage implements OnInit {
       id: uuid(),
       title: this.title.trim(),
       description: this.description?.trim(),
+      categoryId: this.categoryId,
       status: 'pending',
       createdAt: now,
       updatedAt: now,
