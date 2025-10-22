@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>Gestiona tus tareas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="refreshRC()">RC</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="showCategories && categories?.length" color="light">
+    <ion-item lines="none">
+      <ion-label>Filtrar por categoría</ion-label>
+      <ion-select interface="popover" placeholder="Todas" [(ngModel)]="selectedCategoryId">
+        <ion-select-option [value]="''">Todas</ion-select-option>
+        <ion-select-option *ngFor="let c of categories" [value]="c.id">
+          {{ c.name }}
+        </ion-select-option>
+      </ion-select>
+      <ion-button fill="clear" (click)="selectedCategoryId = ''" *ngIf="selectedCategoryId">
+        Limpiar
+      </ion-button>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list *ngIf="!loading && tasks?.length">
+    <ng-container *ngFor="let t of tasks">
+      <ion-item *ngIf="!selectedCategoryId || t.categoryId === selectedCategoryId">
+        <ion-checkbox slot="start" [checked]="t.status === 'done'" (ionChange)="toggle(t)"></ion-checkbox>
+
+        <ion-label (click)="edit(t)">
+          <h2 [style.textDecoration]="t.status==='done' ? 'line-through' : 'none'">
+            {{ t.title }}
+          </h2>
+          <p *ngIf="t.description">{{ t.description }}</p>
+
+          <div *ngIf="showCategories && t.categoryId" style="margin-top: 4px;">
+            <ion-chip outline="true" size="small">
+              <ion-icon name="pricetag-outline"></ion-icon>
+              <ion-label>{{ getCategoryName(t.categoryId) }}</ion-label>
+            </ion-chip>
+          </div>
+        </ion-label>
+
+        <ion-button fill="clear" color="danger" slot="end" (click)="delete(t)">
+          Eliminar
+        </ion-button>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+
+  <ion-list *ngIf="!loading && (!tasks || tasks.length === 0)">
+    <ion-item>
+      <ion-label>Sin tareas. ¡Crea la primera!</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-spinner *ngIf="loading" style="display:block; margin:24px auto;"></ion-spinner>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goAdd()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

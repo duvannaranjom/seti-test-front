@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar tarea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="task">
+  <ion-item>
+    <ion-input label="Título" labelPlacement="floating" [(ngModel)]="title" placeholder="Ej: Comprar víveres"
+      clearInput="true"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea label="Descripción" labelPlacement="floating" [(ngModel)]="description"
+      placeholder="Detalles de la tarea..." autoGrow="true"></ion-textarea>
+  </ion-item>
+
+  <ion-item *ngIf="categories?.length">
+    <ion-label>Categoría</ion-label>
+    <ion-select interface="popover" [(ngModel)]="categoryId">
+      <ion-select-option *ngFor="let cat of categories" [value]="cat.id">
+        <ion-icon name="ellipse" slot="start" [style.color]="cat.color" style="font-size: 10px;"></ion-icon>
+        {{ cat.name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item lines="none">
+    <ion-label>Estado</ion-label>
+    <ion-toggle [(ngModel)]="isDone" (ionChange)="toggleStatus($event)" color="success"></ion-toggle>
+    <ion-note slot="end">{{ isDone ? 'Completada' : 'Pendiente' }}</ion-note>
+  </ion-item>
+
+  <ion-button expand="block" color="primary" (click)="save()" class="ion-margin-top">
+    Guardar cambios
+  </ion-button>
+
+  <ion-button expand="block" color="danger" fill="outline" (click)="deleteTask()" class="ion-margin-top">
+    Eliminar tarea
+  </ion-button>
+</ion-content>
+
+<ion-content *ngIf="!task" class="ion-padding">
+  <ion-text color="medium">
+    <h3>Tarea no encontrada</h3>
+    <p>Regresa al inicio para continuar.</p>
+  </ion-text>
+  <ion-button expand="block" routerLink="/home">Volver al inicio</ion-button>
+</ion-content>

@@ -1,0 +1,26 @@
+<app-header title="Categorías"></app-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input label="Nombre" labelPlacement="floating" [(ngModel)]="name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Color</ion-label>
+    <input type="color" [(ngModel)]="color" style="width: 60px; height: 32px; border: none;">
+  </ion-item>
+
+  <ion-button expand="block" (click)="add()" class="ion-margin-top">
+    Agregar categoría
+  </ion-button>
+
+  <ion-list class="ion-margin-top">
+    <ion-item *ngFor="let cat of categories">
+      <ion-avatar slot="start">
+        <div [style.background]="cat.color" style="width:32px; height:32px; border-radius:50%;"></div>
+      </ion-avatar>
+      <ion-label>{{ cat.name }}</ion-label>
+      <ion-button fill="clear" color="danger" (click)="delete(cat)">Eliminar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
