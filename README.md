@@ -112,8 +112,10 @@ APK generado en:
 ```
 platforms/android/app/build/outputs/apk/debug/app-debug.apk
 ```
+![APK](./screenshots/test-seti.apk)
 
 ### iOS (solo en macOS)
+No me fue posible crearlo debido que no cuento con un equipo con iOS, ya que para su generación se debe hacer desde allí
 ```bash
 ionic cordova platform add ios
 ionic cordova build ios
