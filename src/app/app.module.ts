@@ -10,9 +10,14 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireRemoteConfigModule } from '@angular/fire/compat/remote-config';
 import { FormsModule } from '@angular/forms';
+import { HomePage } from './pages/home/home.page';
+import { EditTaskPage } from './pages/edit-task/edit-task.page';
+import { CategoriesPage } from './pages/categories/categories.page';
+import { AddTaskPage } from './pages/add-task/add-task.page';
+import { SharedModule } from './shared/shared-module';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HomePage, EditTaskPage, CategoriesPage, AddTaskPage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -20,7 +25,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     IonicStorageModule.forRoot({ name: '__todo' }),
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireRemoteConfigModule
+    AngularFireRemoteConfigModule,
+    SharedModule
   ],
   bootstrap: [AppComponent],
 })

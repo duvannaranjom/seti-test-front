@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicModule, NavController, ToastController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { v4 as uuid } from 'uuid';
-import { TasksService } from 'src/app/core/services/tasks.service';
-import { Task } from 'src/app/core/models/task.model';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { Category } from 'src/app/core/models/category.model';
-import { CategoriesService } from 'src/app/core/services/categories.service';
-import { SharedModule } from 'src/app/shared/shared-module';
-import { FeatureFlagsService } from 'src/app/core/services/feature-flags.service';
+import { TasksService } from '../../core/services/tasks.service';
+import { Task } from '../../core/models/task.model';
+import { Category } from '../../core/models/category.model';
+import { CategoriesService } from '../../core/services/categories.service';
+import { FeatureFlagsService } from '../../core/services/feature-flags.service';
 
 @Component({
   selector: 'app-add-task',
-  standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule, SharedModule],
+  standalone: false,
   templateUrl: './add-task.page.html',
 })
 export class AddTaskPage implements OnInit {

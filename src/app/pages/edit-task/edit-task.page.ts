@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, IonicModule, NavController, ToastController } from '@ionic/angular';
+import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { TasksService } from 'src/app/core/services/tasks.service';
-import { Task } from 'src/app/core/models/task.model';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { CategoriesService } from 'src/app/core/services/categories.service';
-import { Category } from 'src/app/core/models/category.model';
+import { TasksService } from '../../core/services/tasks.service';
+import { Task } from '../../core/models/task.model';
+import { CategoriesService } from '../../core/services/categories.service';
+import { Category } from '../../core/models/category.model';
 
 @Component({
   selector: 'app-edit-task',
-  standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule],
+  standalone: false,
   templateUrl: './edit-task.page.html',
 })
 export class EditTaskPage implements OnInit {

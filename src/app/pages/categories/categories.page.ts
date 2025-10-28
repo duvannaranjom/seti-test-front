@@ -1,16 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriesService } from 'src/app/core/services/categories.service';
-import { Category } from 'src/app/core/models/category.model';
+import { CategoriesService } from '../../core/services/categories.service';
+import { Category } from '../../core/models/category.model';
 import { v4 as uuid } from 'uuid';
-import { AlertController, IonicModule, ToastController } from '@ionic/angular';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared-module';
-
+import { AlertController, ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-categories',
-  standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule, SharedModule],
+  standalone: false,
   templateUrl: './categories.page.html',
 })
 export class CategoriesPage implements OnInit {

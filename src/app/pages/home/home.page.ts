@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ToastController, AlertController, IonicModule } from '@ionic/angular';
-import { TasksService } from 'src/app/core/services/tasks.service';
-import { CategoriesService } from 'src/app/core/services/categories.service';
-import { FeatureFlagsService } from 'src/app/core/services/feature-flags.service';
-import { Task } from 'src/app/core/models/task.model';
-import { Category } from 'src/app/core/models/category.model';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { SharedModule } from 'src/app/shared/shared-module';
+import { NavController, ToastController, AlertController } from '@ionic/angular';
+import { TasksService } from '../../core/services/tasks.service';
+import { CategoriesService } from '../../core/services/categories.service';
+import { FeatureFlagsService } from '../../core/services/feature-flags.service';
+import { Task } from '../../core/models/task.model';
+import { Category } from '../../core/models/category.model';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
-  standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule, SharedModule],
+  standalone: false,
 })
 export class HomePage implements OnInit {
   tasks: Task[] = [];
